@@ -1,0 +1,20 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: user-service
+  datasource:
+    url: jdbc:postgresql://localhost:5442/ott_db
+    username: admin
+    password: 123456789
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  data:
+    jdbc:
+      dialect: postgresql
+
+  credentials:
+    accessKey: AKIAXZ5NF3IHVW24YXEJ
+    secretKey: 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
