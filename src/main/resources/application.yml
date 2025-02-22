@@ -14,7 +14,3 @@ spring:
   data:
     jdbc:
       dialect: postgresql
-
-  credentials:
-    accessKey: AKIAXZ5NF3IHVW24YXEJ
-    secretKey: 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
