@@ -30,11 +30,15 @@ public class RedisConfig {
         ReactiveStringRedisTemplate redisTemplate = applicationContext.getBean(ReactiveStringRedisTemplate.class);
         String key = "testKey";
         String value = "Redis is up and running!";
-        System.out.println("Redis server details: host:" + host + " | port:" + port);
+        System.out.println("🎯 Redis server details: host:" + host + " | port:" + port);
         redisTemplate.opsForValue().set(key, value)
                 .doOnSuccess(success -> System.out.println("✅ Redis SET Success: " + success))
                 .flatMap(ignore -> redisTemplate.opsForValue().get(key))
-                .doOnNext(retrievedValue -> System.out.println("✅ Redis GET Success: " + retrievedValue))
+                .doOnNext(retrievedValue -> {
+                    System.out.println("✅ Redis GET Success: " + retrievedValue);
+                    // ✅ Publish event after successful Redis verification
+                    applicationContext.publishEvent(new RedisReadyEvent(this));
+                })
                 .doOnError(error -> System.err.println("❌ Redis Error: " + error.getMessage()))
                 .subscribe();
     }
@@ -54,5 +58,11 @@ public class RedisConfig {
     private RedisSerializationContext<String, String> redisSerializerContext() {
         return RedisSerializationContext.<String, String>newSerializationContext(new StringRedisSerializer())
                 .build();
+    }
+
+    public static class RedisReadyEvent { // ✅ Define custom event
+        public RedisReadyEvent(Object __) {
+            System.out.println("🎯 Redis Event published!");
+        }
     }
 }

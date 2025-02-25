@@ -8,9 +8,24 @@ spring:
     username: admin
     password: 123456789
   jpa:
-    show-sql: true
     hibernate:
       ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
   data:
-    jdbc:
-      dialect: postgresql
+    redis:
+      host: localhost
+      port: 6079
+      timeout: 60000
+      lettuce:
+        pool:
+          enabled: true
+          max-active: 8
+          max-idle: 8
+          min-idle: 0
+          max-wait: 5000ms
+logging:
+  level:
+    org.springframework.data.redis: DEBUG
