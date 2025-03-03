@@ -16,9 +16,16 @@ spring:
 
   # R2DBC (PostgresSQL)
   r2dbc:
-    url: r2dbc:postgresql://localhost:5442/ott_db
+    host: localhost
+    port: 5442
+    database: ott_db
+    url: r2dbc:postgresql://${spring.r2dbc.host}:${spring.r2dbc.port}/${spring.r2dbc.database}
     username: admin
     password: 123456789
+
+  #Jooq Configuration
+  jooq:
+    sql-dialect: POSTGRES
 
   # Redis Configuration
   data:
