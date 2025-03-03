@@ -1,38 +1,36 @@
 package org.engicodes.userservice.model;
 
-import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.engicodes.userservice.util.BaseEntity;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
 import java.util.Set;
+import java.util.UUID;
 
 @EqualsAndHashCode(callSuper = true)
-@Entity
 @Table(name = "users")
 @Data
 @NoArgsConstructor
 public class User extends BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
-    @Column(unique = true)
+    private UUID id;
     @NotBlank
     @Pattern(regexp = "^[a-zA-Z0-9]+$", message = "Username must contain only alphabets and numbers")
     private String userName;
-    @Column(unique = true)
+    @NotBlank
+    private String fullName;
     @Email(message = "email is not correct format!")
     private String email;
     @Min(value = 18, message = "Age should be minimum 18")
     @Max(value = 80, message = "Age should be maximum 80")
     private Integer age;
-    @Enumerated(EnumType.STRING)
     private Roles role;
-    @Enumerated(EnumType.STRING)
     private SubscriptionStatus subscriptionStatus;
-
+    private boolean emailVerified;
     public Set<String> getAuthorities() {
         return role.getAuthorities();
     }

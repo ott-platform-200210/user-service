@@ -1,4 +1,5 @@
 package org.engicodes.userservice.dto;
 
-public record UpdateUserDetailsRequestDto() {
+public record UpdateUserDetailsRequestDto(
+) {
 }

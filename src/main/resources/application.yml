@@ -1,19 +1,26 @@
 server:
   port: 8082
+
 spring:
   application:
     name: user-service
-  datasource:
+
+  # Liquibase Configuration
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.yaml
     url: jdbc:postgresql://localhost:5442/ott_db
+    user: admin
+    password: 123456789
+    driver-class-name: org.postgresql.Driver
+
+  # R2DBC (PostgresSQL)
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5442/ott_db
     username: admin
     password: 123456789
-  jpa:
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-    show-sql: true
+
+  # Redis Configuration
   data:
     redis:
       host: localhost
@@ -26,6 +33,15 @@ spring:
           max-idle: 8
           min-idle: 0
           max-wait: 5000ms
+
+# AWS SDK configurations
+aws:
+  cognito:
+    region: us-east-2
+    userPoolId: us-east-2_5zEkiuvSQ
+    clientId: 77n8pfpllrccdrukrt5cck3t75
+
+# Logging configurations
 logging:
   level:
     org.springframework.data.redis: DEBUG

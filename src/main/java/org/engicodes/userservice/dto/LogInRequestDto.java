@@ -1,6 +1,6 @@
 package org.engicodes.userservice.dto;
 
-public record SignInRequestDto(
+public record LogInRequestDto(
         String email,
         String password
 ) {

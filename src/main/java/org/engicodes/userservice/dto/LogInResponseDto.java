@@ -1,12 +1,14 @@
 package org.engicodes.userservice.dto;
 
 
-public record SignInResponseDto(
+public record LogInResponseDto(
         String fullName,
         String email,
         String userName,
         Integer age,
         String role,
-        String subStatus
+        String subStatus,
+        boolean emailVerified,
+        String token
 ) {
 }
