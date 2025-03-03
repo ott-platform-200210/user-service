@@ -1,0 +1,12 @@
+<configuration>
+    <generator>
+        <database>
+            <name>org.jooq.meta.postgres.PostgresDatabase</name>
+            <inputSchema>public</inputSchema>
+        </database>
+        <target>
+            <packageName>org.engicodes.userservice.config.misc.jooq</packageName>
+            <directory>src/main/java</directory>
+        </target>
+    </generator>
+</configuration>
