@@ -47,6 +47,8 @@ aws:
     region: us-east-2
     userPoolId: us-east-2_5zEkiuvSQ
     clientId: 77n8pfpllrccdrukrt5cck3t75
+    jwksUrl: https://cognito-idp.${aws.cognito.region}.amazonaws.com/${aws.cognito.userPoolId}/.well-known/jwks.json
+
 logging:
   level:
     org.springframework.security: DEBUG
