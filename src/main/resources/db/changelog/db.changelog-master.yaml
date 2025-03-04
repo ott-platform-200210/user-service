@@ -1,5 +1,12 @@
 databaseChangeLog:
   - changeSet:
+      id: 0
+      author: liquibase
+      changes:
+        - sql:
+            dbms: postgresql
+            sql: CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+  - changeSet:
       id: 1
       author: user-service
       changes:
@@ -59,3 +66,19 @@ databaseChangeLog:
                   name: updated_at
                   type: TIMESTAMP
                   defaultValueComputed: CURRENT_TIMESTAMP
+  - changeSet:
+      id: 2
+      author: ahmadmujtaba200210
+      changes:
+        - addDefaultValue:
+            tableName: users
+            columnName: id
+            defaultValueComputed: uuid_generate_v4()
+
+  - changeSet:
+      id: 3
+      author: ahmadmujtaba200210
+      changes:
+        - dropNotNullConstraint:
+            tableName: users
+            columnName: age

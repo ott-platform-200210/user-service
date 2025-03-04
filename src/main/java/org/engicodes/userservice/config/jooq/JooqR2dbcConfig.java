@@ -1,4 +1,4 @@
-package org.engicodes.userservice.config.misc.jooq;
+package org.engicodes.userservice.config.jooq;
 
 import io.r2dbc.spi.ConnectionFactories;
 import io.r2dbc.spi.ConnectionFactory;

@@ -47,8 +47,7 @@ aws:
     region: us-east-2
     userPoolId: us-east-2_5zEkiuvSQ
     clientId: 77n8pfpllrccdrukrt5cck3t75
-
-# Logging configurations
 logging:
   level:
-    org.springframework.data.redis: DEBUG
+    org.springframework.security: DEBUG
+#    reactor.netty.http.client: DEBUG
