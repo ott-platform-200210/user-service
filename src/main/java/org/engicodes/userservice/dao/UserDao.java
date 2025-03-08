@@ -9,4 +9,5 @@ public interface UserDao {
     Mono<Boolean> checkIfUserNameExists(String username);
 
     Mono<User> createNewUser(User user);
+    Mono<User> getUserDetailsByEmail(String email);
 }

@@ -26,4 +26,9 @@ public class UserDaoImpl implements UserDao {
     public Mono<User> createNewUser(User user) {
         return userRepository.save(user);
     }
+
+    @Override
+    public Mono<User> getUserDetailsByEmail(String email) {
+        return userRepository.getUsersByEmail(email);
+    }
 }
