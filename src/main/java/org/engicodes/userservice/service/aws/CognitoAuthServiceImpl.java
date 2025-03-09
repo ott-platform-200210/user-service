@@ -119,6 +119,17 @@ public class CognitoAuthServiceImpl implements CognitoAuthService {
                 });
     }
 
+    private Mono<AdminAddUserToGroupResponse> assignGroupToUser(String userEmail, String groupName) {
+        AdminAddUserToGroupRequest groupAssignRequest = AdminAddUserToGroupRequest.builder()
+                .groupName(groupName)
+                .userPoolId(cognitoUserPoolId)
+                .username(userEmail)
+                .build();
+        return Mono.fromFuture(() -> cognitoClient.adminAddUserToGroup(groupAssignRequest))
+                .doOnSuccess(_ -> log.info("✅ {} assigned to group: {}", userEmail, groupName))
+                .doOnError(error -> log.error("❌ Failed to assign user to group: {}", error.getMessage()));
+    }
+
     public Mono<Void> deleteUserFromCognito(String username) {
         AdminDeleteUserRequest deleteUserRequest = AdminDeleteUserRequest.builder()
                 .userPoolId(cognitoUserPoolId)
